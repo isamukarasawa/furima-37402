@@ -2,16 +2,16 @@
 
 ## users_テーブル
 
-| Column             | Type       | Options     |
-| ------------------ | ---------- | ----------- |
-| nickname           | string     | null: false |
-| email              | string     | unique:true |
-| encrypted_password | string     | null: false |
-| last_name          | string     | null: false |
-| first_name         | string     | null: false |
-| last_name_kana     | string     | null: false |
-| first_name_kane    | string     | null: false |
-| birthday           | string     | null: false |
+| Column             | Type       | Options                 |
+| ------------------ | ---------- | ----------------------- |
+| nickname           | string     | null: false             |
+| email              | string     | null: false unique:true |
+| encrypted_password | string     | null: false             |
+| last_name          | string     | null: false             |
+| first_name         | string     | null: false             |
+| last_name_kana     | string     | null: false             |
+| first_name_kane    | string     | null: false             |
+| birthday           | date       | null: false             |
 
 ### Association
 - has_many :items
@@ -33,7 +33,6 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :buyer
 - has_one :purchase
 
 ## buyer_テーブル
@@ -46,9 +45,10 @@
 | address              | string     | null: false                    |
 | biru_name            | string     |                                |
 | tel                  | string     | null: false                    |
+| purchase             | references | null: false, foreign_key: true |
 
 ### Association
-- has_one :purchase
+- belongs_to :purchase
 
 ## purchase_テーブル
 
@@ -59,5 +59,5 @@
 
 ### Association
 - belongs_to :user
-- has_one :item
+- belongs_to :item
 - has_one :buyer
