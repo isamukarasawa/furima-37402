@@ -8,8 +8,8 @@ class Item < ApplicationRecord
   validates :delivery_charge_id     , presence: true
   validates :prefecturse_id         , presence: true
   validates :delivery_day_id        , presence: true
-  validates :price                  , presence: true, numericality: {greater_than: 300,less_than: 9999999}
-  validates :user                   , presence: true
+  validates :price                  , presence: true, numericality: {greater_than: 300,less_than: 9999999}, format: { with: /\A[0-9]+\z/ }
+  validates :image, presence: true
 
   belongs_to :user
   belongs_to :category
