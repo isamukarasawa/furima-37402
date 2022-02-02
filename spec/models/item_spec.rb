@@ -4,7 +4,7 @@ RSpec.describe Item, type: :model do
     @item = FactoryBot.build(:item)
   end
 
-describe "商品の出費" do
+describe "商品の出品" do
     context "商品の出品ができる時"do
       it "必須項目が存在していれば登録できる" do
         expect(@item).to be_valid
