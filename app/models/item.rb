@@ -1,14 +1,14 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
-  validates :product_name           , presence: true
-  validates :expianation            , presence: true
-  validates :category_id            , presence: true
-  validates :product_situation_id   , presence: true
-  validates :delivery_charge_id     , presence: true
-  validates :prefecturse_id         , presence: true
-  validates :delivery_day_id        , presence: true
-  validates :price                  , presence: true, numericality: {greater_than: 299,less_than: 10000000,only_integer: true}
+  validates :product_name, presence: true
+  validates :expianation, presence: true
+  validates :category_id, presence: true
+  validates :product_situation_id, presence: true
+  validates :delivery_charge_id, presence: true
+  validates :prefecturse_id, presence: true
+  validates :delivery_day_id, presence: true
+  validates :price, presence: true, numericality: { greater_than: 299, less_than: 10_000_000, only_integer: true }
   validates :image, presence: true
 
   belongs_to :user
@@ -18,8 +18,8 @@ class Item < ApplicationRecord
   belongs_to :prefecturse
   belongs_to :delivery_day
 
-  validates :category_id, :product_situation_id, :delivery_charge_id, :prefecturse_id, :delivery_day_id, numericality: { other_than: 1, message: "can't be blank" } 
+  validates :category_id, :product_situation_id, :delivery_charge_id, :prefecturse_id, :delivery_day_id,
+            numericality: { other_than: 1, message: "can't be blank" }
 
   has_one_attached :image
-  
 end
