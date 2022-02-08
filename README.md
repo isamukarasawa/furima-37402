@@ -15,7 +15,7 @@
 
 ### Association
 - has_many :items
-- has_many :purchases
+- has_many :orders
 
 ## items_テーブル
 
@@ -26,31 +26,31 @@
 | category_id          | integer     | null: false                    |
 | product_situation_id | integer     | null: false                    |
 | delivery_charge_id   | integer     | null: false                    |
-| prefecturse_id       | integer     | null: false                    |
+| prefecture_id       | integer     | null: false                    |
 | delivery_day_id      | integer     | null: false                    |
 | price                | integer     | null: false                    |
 | user                 | references  | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- has_one :purchase
+- has_one :order
 
 ## addresses_テーブル
 
 | Column               | Type       | Options                        |
 | -------------------- | ---------- | ------------------------------ |
 | post_code            | string     | null: false                    | 
-| prefecturse_id       | integer    | null: false                    |
+| prefecture_id       | integer    | null: false                    |
 | city                 | string     | null: false                    |
 | address              | string     | null: false                    |
 | biru_name            | string     |                                |
 | tel                  | string     | null: false                    |
-| purchase             | references | null: false, foreign_key: true |
+| order                | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :purchase
+- belongs_to :order
 
-## purchases_テーブル
+## order_テーブル
 
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
@@ -61,3 +61,12 @@
 - belongs_to :user
 - belongs_to :item
 - has_one :address
+
+order_controller - create action - save in model - order.save
+                                                - address.save
+
+<!-- address_controller  -->
+PAYJP
+４００：送られたカード情報のキー名に誤りがある。
+４０１：APIキー(公開鍵、秘密鍵らへん)に誤りがある。または読み込めていない。
+４０２：送られてきたカード情報の内容に誤りがある。有効年数が４桁じゃないとか。
