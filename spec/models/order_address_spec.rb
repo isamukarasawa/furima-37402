@@ -24,8 +24,23 @@ RSpec.describe OrderAddress, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Post code can't be blank")
       end
+      it 'post_codeが半角英数字3桁と4桁でない場合は購入できないこと' do
+        @order.post_code = '０００-００００'
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Post code is invalid")
+      end
+      it 'post_codeがが半角ハイフンを含む形でなければ購入できないこと' do
+        @order.post_code = '000000'
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Post code is invalid")
+      end
       it 'prefecture_idが空の場合は購入できないこと' do
         @order.prefecture_id = ''
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Prefecture can't be blank")
+      end
+      it 'prefecture_idが1では登録できないこと' do
+        @order.prefecture_id = 1
         @order.valid?
         expect(@order.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -44,16 +59,6 @@ RSpec.describe OrderAddress, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Tel can't be blank")
       end
-      it 'post_codeが半角英数字3桁と4桁でない場合は購入できないこと' do
-        @order.post_code = '０００-００００'
-        @order.valid?
-        expect(@order.errors.full_messages).to include("Post code is invalid")
-      end
-      it 'post_codeがが半角ハイフンを含む形でなければ購入できないこと' do
-        @order.post_code = '000000'
-        @order.valid?
-        expect(@order.errors.full_messages).to include("Post code is invalid")
-      end
       it 'telに半角数字以外が含まれている場合は購入できない' do
         @order.tel = '０0000000000'
         @order.valid?
@@ -63,11 +68,6 @@ RSpec.describe OrderAddress, type: :model do
         @order.tel = '000000000'
         @order.valid?
         expect(@order.errors.full_messages).to include("Tel is invalid")
-      end
-      it 'prefecture_idが1では登録できないこと' do
-        @order.prefecture_id = 1
-        @order.valid?
-        expect(@order.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'userが紐付いていないと保存できない' do
         @order.user_id = nil
