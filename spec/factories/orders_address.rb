@@ -8,7 +8,5 @@ FactoryBot.define do
     tel             {'00000000000'} 
     token           {'token'}
 
-    association :user_id
-    association :item_id
   end
 end
