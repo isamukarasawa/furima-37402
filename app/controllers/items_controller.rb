@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
 
   def items_params
     params.require(:item).permit(:image, :product_name, :expianation, :category_id, :product_situation_id, :delivery_charge_id,
-                                 :prefecturse_id, :delivery_day_id, :price).merge(user_id: current_user.id)
+                                 :prefecture_id, :delivery_day_id, :price).merge(user_id: current_user.id)
   end
 
   def set_item
@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
   end
 
   def unless_user
-    unless current_user.id == @item.user_id
+    if current_user.id != @item.user_id || @item.order
       redirect_to action: :index
     end
   end

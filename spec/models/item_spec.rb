@@ -60,16 +60,16 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
       end
 
-      it 'prefecturse_idが1では登録できないこと' do
-        @item.prefecturse_id = 1
+      it 'prefecture_idが1では登録できないこと' do
+        @item.prefecture_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecturse can't be blank")
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
 
-      it 'prefecturse_idが空の場合は登録できないこと' do
-        @item.prefecturse_id = ''
+      it 'prefecture_idが空の場合は登録できないこと' do
+        @item.prefecture_id = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecturse can't be blank")
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
 
       it 'delivery_day_idが1では登録できないこと' do
