@@ -69,3 +69,4 @@ gem 'pry-rails'
 gem 'rspec-rails', '~> 4.0.0'
 gem 'payjp'
 gem "aws-sdk-s3", require: false
+gem 'rails-i18n'

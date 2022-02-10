@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :unless_user, only: [:edit, :destroy]
@@ -26,8 +25,7 @@ class ItemsController < ApplicationController
 
   def edit
   end
-  
-    
+
   def update
     if @item.update(items_params)
       redirect_to item_path
@@ -53,8 +51,6 @@ class ItemsController < ApplicationController
   end
 
   def unless_user
-    if current_user.id != @item.user_id || @item.order
-      redirect_to action: :index
-    end
+    redirect_to action: :index if current_user.id != @item.user_id || @item.order
   end
 end

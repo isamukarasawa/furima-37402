@@ -20,7 +20,7 @@ class Item < ApplicationRecord
   has_one :order
 
   validates :category_id, :product_situation_id, :delivery_charge_id, :prefecture_id, :delivery_day_id,
-            numericality: { other_than: 1, message: "can't be blank" }
+            numericality: { other_than: 1 }
 
   has_one_attached :image
 end
